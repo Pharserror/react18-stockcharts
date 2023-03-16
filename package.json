@@ -143,5 +143,6 @@
       "name": "rrag",
       "email": "ragunath.ramaswamy@gmail.com"
     }
-  ]
+  ],
+  "typings": "index.d.ts"
 }
