@@ -110,7 +110,134 @@ declare module 'react-stockcharts' {
     
     export function zipper(): any;
 
+    export interface InteractiveYCoordinateProps {
+      readonly yValue: number;
+      readonly yAxisPad: number;
+      readonly chartHeight: number;
+      readonly chartWidth: number;
+      readonly xPosition?: number;
+      readonly draggable?: boolean;
+      readonly onDragStart?: (e: any) => void;
+      readonly onDrag?: (e: any) => void;
+      readonly onDragComplete?: (e: any) => void;
+      readonly bgFill?: string;
+      readonly bgOpacity?: number;
+      readonly textFill?: string;
+      readonly fontFamily?: string;
+      readonly fontSize?: number;
+      readonly fontWeight?: number;
+      readonly stroke?: string;
+      readonly strokeWidth?: number;
+      readonly strokeOpacity?: number;
+      readonly textAnchor?: string;
+      readonly edge?: 'left' | 'right';
+      readonly rectWidth?: number;
+      readonly rectHeight?: number;
+      readonly arrowWidth?: number;
+      readonly hideLine?: boolean;
+      readonly displayFormat?: (value: number) => string;
+    }
+ 
+    export interface InteractiveLineProps {
+      readonly type: 'LINE';
+      readonly x1Value: any;
+      readonly x2Value: any;
+      readonly y1Value: any;
+      readonly y2Value: any;
+      readonly stroke: string;
+      readonly strokeWidth: number;
+      readonly strokeOpacity?: number;
+      readonly strokeDasharray?: string;
+      readonly interactiveCursorClass?: string;
+      readonly edgeClip?: boolean;
+    }
 
+    
+    export interface InteractiveTextProps {
+      readonly type: 'TEXT';
+      readonly text: string;
+      readonly fontFamily: string;
+      readonly fontSize: number;
+      readonly fontWeight: number;
+      readonly fill: string;
+      readonly textAnchor: string;
+      readonly interactiveCursorClass?: string;
+      readonly rotate?: number;
+      readonly show?: boolean;
+      readonly bgFill?: string;
+      readonly bgOpacity?: number;
+      readonly rectRadius?: number;
+      readonly rectHeight?: number;
+      readonly rectWidth?: number;
+      readonly rectX?: number;
+      readonly rectY?: number;
+      readonly edgeClip?: boolean;
+      readonly tooltip?: string;
+    }
+
+ 
+  
+    export type InteractiveShapeProps = InteractiveLineProps | InteractiveTextProps | InteractiveYCoordinateProps | InteractiveYCoordinateTextProps;
+   
+    export interface EventCaptureProps {
+      mouseMove?: boolean;
+      zoom?: boolean;
+      pan?: boolean;
+      mainChart?: boolean;
+      enableDragOnHover?: boolean;
+      onClick?: (e: any, interactive: InteractiveShapeProps) => void;
+      onDoubleClick?: (e: any, interactive: InteractiveShapeProps) => void;
+      onContextMenu?: (e: any, interactive: InteractiveShapeProps) => void;
+      onMouseEnter?: (e: any, interactive: InteractiveShapeProps) => void;
+      onMouseLeave?: (e: any, interactive: InteractiveShapeProps) => void;
+      onPanStart?: (e: any) => void;
+      onPan?: (e: any) => void;
+      onPanEnd?: (e: any) => void;
+      onZoom?: (e: any) => void;
+      onPinchZoom?: (e: any) => void;
+      onPinchZoomEnd?: (e: any) => void;
+    }
+
+    
+
+    export interface Chart {
+      ChartCanvas: React.ComponentType<ChartCanvasProps>;
+      Chart: React.ComponentType<ChartProps>;
+      XAxis: React.ComponentType<any>;
+      YAxis: React.ComponentType<any>;
+      MouseCoordinateX: React.ComponentType<any>;
+      MouseCoordinateY: React.ComponentType<any>;
+      CrossHairCursor: React.ComponentType<any>;
+      CurrentCoordinate: React.ComponentType<any>;
+      EdgeIndicator: React.ComponentType<any>;
+      OHLCTooltip: React.ComponentType<any>;
+      MovingAverageTooltip: React.ComponentType<any>;
+      SingleValueTooltip: React.ComponentType<any>;
+      ToolTipText: React.ComponentType<any>;
+      AreaSeries: React.ComponentType<any>;
+      BarSeries: React.ComponentType<any>;
+      CandlestickSeries: React.ComponentType<any>;
+      LineSeries: React.ComponentType<any>;
+      ScatterSeries: React.ComponentType<any>;
+      CircleMarker: React.ComponentType<any>;
+      SquareMarker: React.ComponentType<any>;
+      TriangleMarker: React.ComponentType<any>;
+      WhiskerTooltip: React.ComponentType<any>;
+      GroupTooltip: React.ComponentType<any>;
+      MACDSeries: React.ComponentType<any>;
+      RSISeries: React.ComponentType<any>;
+      BollingerSeries: React.ComponentType<any>;
+      ElderRaySeries: React.ComponentType<any>;
+      ElderRaySeriesFilled: React.ComponentType<any>;
+      StochasticSeries: React.ComponentType<any>;
+      StraightLine: React.ComponentType<any>;
+      TrendLine: React.ComponentType<any>;
+      FibonacciRetracement: React.ComponentType<any>;
+      FibonacciExtension: React.ComponentType<any>;
+      FibonacciFan: React.ComponentType<any>;
+    }
+  
+  
 
   }
   
