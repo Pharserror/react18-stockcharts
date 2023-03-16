@@ -78,7 +78,6 @@ declare module 'react-stockcharts' {
     
     export interface ChartDataArray extends Array<ChartData> {}
 
-
     export interface ChartConfig {
         width: number;
         height: number;
@@ -102,11 +101,10 @@ declare module 'react-stockcharts' {
 
     export function discontinuousTimeScaleProviderBuilder(inputDateAccessor: (data: any) => any): any;
     
-
     export function fitWidth<T>(
         C: React.ComponentClass<T>,
         options?: { minWidth: number; maxWidth: number; widthRatio: number }
-      ): React.ComponentClass<T>;
+    ): React.ComponentClass<T>;
     
     export function last<T>(array: Array<T>): T;
     
