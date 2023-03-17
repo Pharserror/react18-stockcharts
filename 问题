@@ -1,0 +1,7 @@
+//    根据react-stockcharts@0.7.8中的代码类型，把选中的代码从js转化成ts，或者是tsx
+
+//    根据react-stockcharts@0.7.8中的代码类型,写出@types/react-stockcharts,要详细到每一个类和方法
+
+//    这段代码是react-stockcharts@0.7.8 所有对外暴漏出来的类型了吗
+
+//    根据react-stockcharts@0.7.8中的代码，补全参数类型

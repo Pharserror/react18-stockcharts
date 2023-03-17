@@ -1,243 +1,119 @@
+// Type definitions for react-stockcharts 0.7.8
+// Project: https://github.com/rrag/react-stockcharts
+// Definitions by: Your Name <https://github.com/yourusername>
+
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 declare module 'react-stockcharts' {
-    export interface ChartProps {
-      data: Array<any>;
-      width: number;
-      height: number;
-      margin: {
-        left: number;
-        right: number;
-        top: number;
-        bottom: number;
-      };
-      type: string;
-      xAccessor: (data: any) => any;
-      xScale: any;
-      yScale: any;
-      displayXAccessor?: (data: any) => any;
-      children: any;
-      seriesName: string;
-      svgDraw?: any;
-      defaultFocus: boolean;
-      focus?: any;
-      zoomEvent: boolean;
-      clamp: boolean;
-      pointsPerPxThreshold: number;
-      panEvent: boolean;
-      zoomAnchor?: (e: any) => any;
-      onContextMenu?: (e: any) => void;
-    }
-  
-    export class Chart extends React.Component<ChartProps, any> {}
-  
-    export interface ChartCanvasProps {
-      width: number;
-      height: number;
-      ratio: number;
-      margin: {
-        left: number;
-        right: number;
-        top: number;
-        bottom: number;
-      };
-      type: string;
-      seriesName?: string;
-      xAccessor?: (data: any) => any;
-      xScale?: any;
-      displayXAccessor?: (data: any) => any;
-      data: Array<any>;
-      disableMouseMoveEvent: boolean;
-      panEvent: boolean;
-      zoomEvent: boolean;
-      clamp: boolean;
-      pointsPerPxThreshold: number;
-      useCrossHairStyleCursor: boolean;
-      context: any;
-      onContextMenu?: (e: any) => void;
-      onDoubleClick?: (e: any) => void;
-      onMouseMove?: (e: any) => void;
-      onClick?: (e: any) => void;
-      onPanEnd?: () => void;
-      onPan?: () => void;
-      onZoom?: () => void;
-    }
-  
-    export class ChartCanvas extends React.Component<ChartCanvasProps, any> {}
-  
-    // 继续添加其他类型定义
-    export interface ChartData {
-        date: Date;
-        open: number;
-        high: number;
-        low: number;
-        close: number;
-        volume: number;
-    }
-    
-    export interface ChartDataArray extends Array<ChartData> {}
-
-    export interface ChartConfig {
-        width: number;
-        height: number;
-        margin: {
-          left: number;
-          right: number;
-          top: number;
-          bottom: number;
-        };
-        clamp: boolean;
-        yExtents: Array<any> | ((data: ChartDataArray) => Array<any>);
-        xAccessor: (data: ChartData) => any;
-        xScale?: any;
-        series: Array<{
-          yAccessor: (data: ChartData) => any;
-          stroke?: string;
-          fill?: string;
-          type: string;
-        }>;
-    }
-
-    export function discontinuousTimeScaleProviderBuilder(inputDateAccessor: (data: any) => any): any;
-    
-    export function fitWidth<T>(
-        C: React.ComponentClass<T>,
-        options?: { minWidth: number; maxWidth: number; widthRatio: number }
-    ): React.ComponentClass<T>;
-    
-    export function last<T>(array: Array<T>): T;
-    
-    export function zipper(): any;
-
-    export interface InteractiveYCoordinateProps {
-      readonly yValue: number;
-      readonly yAxisPad: number;
-      readonly chartHeight: number;
-      readonly chartWidth: number;
-      readonly xPosition?: number;
-      readonly draggable?: boolean;
-      readonly onDragStart?: (e: any) => void;
-      readonly onDrag?: (e: any) => void;
-      readonly onDragComplete?: (e: any) => void;
-      readonly bgFill?: string;
-      readonly bgOpacity?: number;
-      readonly textFill?: string;
-      readonly fontFamily?: string;
-      readonly fontSize?: number;
-      readonly fontWeight?: number;
-      readonly stroke?: string;
-      readonly strokeWidth?: number;
-      readonly strokeOpacity?: number;
-      readonly textAnchor?: string;
-      readonly edge?: 'left' | 'right';
-      readonly rectWidth?: number;
-      readonly rectHeight?: number;
-      readonly arrowWidth?: number;
-      readonly hideLine?: boolean;
-      readonly displayFormat?: (value: number) => string;
-    }
- 
-    export interface InteractiveLineProps {
-      readonly type: 'LINE';
-      readonly x1Value: any;
-      readonly x2Value: any;
-      readonly y1Value: any;
-      readonly y2Value: any;
-      readonly stroke: string;
-      readonly strokeWidth: number;
-      readonly strokeOpacity?: number;
-      readonly strokeDasharray?: string;
-      readonly interactiveCursorClass?: string;
-      readonly edgeClip?: boolean;
-    }
-
-    
-    export interface InteractiveTextProps {
-      readonly type: 'TEXT';
-      readonly text: string;
-      readonly fontFamily: string;
-      readonly fontSize: number;
-      readonly fontWeight: number;
-      readonly fill: string;
-      readonly textAnchor: string;
-      readonly interactiveCursorClass?: string;
-      readonly rotate?: number;
-      readonly show?: boolean;
-      readonly bgFill?: string;
-      readonly bgOpacity?: number;
-      readonly rectRadius?: number;
-      readonly rectHeight?: number;
-      readonly rectWidth?: number;
-      readonly rectX?: number;
-      readonly rectY?: number;
-      readonly edgeClip?: boolean;
-      readonly tooltip?: string;
-    }
-
- 
-  
-    export type InteractiveShapeProps = InteractiveLineProps | InteractiveTextProps | InteractiveYCoordinateProps | InteractiveYCoordinateTextProps;
-   
-    export interface EventCaptureProps {
-      mouseMove?: boolean;
-      zoom?: boolean;
-      pan?: boolean;
-      mainChart?: boolean;
-      enableDragOnHover?: boolean;
-      onClick?: (e: any, interactive: InteractiveShapeProps) => void;
-      onDoubleClick?: (e: any, interactive: InteractiveShapeProps) => void;
-      onContextMenu?: (e: any, interactive: InteractiveShapeProps) => void;
-      onMouseEnter?: (e: any, interactive: InteractiveShapeProps) => void;
-      onMouseLeave?: (e: any, interactive: InteractiveShapeProps) => void;
-      onPanStart?: (e: any) => void;
-      onPan?: (e: any) => void;
-      onPanEnd?: (e: any) => void;
-      onZoom?: (e: any) => void;
-      onPinchZoom?: (e: any) => void;
-      onPinchZoomEnd?: (e: any) => void;
-    }
-
-    
-
-    export interface Chart {
-      ChartCanvas: React.ComponentType<ChartCanvasProps>;
-      Chart: React.ComponentType<ChartProps>;
-      XAxis: React.ComponentType<any>;
-      YAxis: React.ComponentType<any>;
-      MouseCoordinateX: React.ComponentType<any>;
-      MouseCoordinateY: React.ComponentType<any>;
-      CrossHairCursor: React.ComponentType<any>;
-      CurrentCoordinate: React.ComponentType<any>;
-      EdgeIndicator: React.ComponentType<any>;
-      OHLCTooltip: React.ComponentType<any>;
-      MovingAverageTooltip: React.ComponentType<any>;
-      SingleValueTooltip: React.ComponentType<any>;
-      ToolTipText: React.ComponentType<any>;
-      AreaSeries: React.ComponentType<any>;
-      BarSeries: React.ComponentType<any>;
-      CandlestickSeries: React.ComponentType<any>;
-      LineSeries: React.ComponentType<any>;
-      ScatterSeries: React.ComponentType<any>;
-      CircleMarker: React.ComponentType<any>;
-      SquareMarker: React.ComponentType<any>;
-      TriangleMarker: React.ComponentType<any>;
-      WhiskerTooltip: React.ComponentType<any>;
-      GroupTooltip: React.ComponentType<any>;
-      MACDSeries: React.ComponentType<any>;
-      RSISeries: React.ComponentType<any>;
-      BollingerSeries: React.ComponentType<any>;
-      ElderRaySeries: React.ComponentType<any>;
-      ElderRaySeriesFilled: React.ComponentType<any>;
-      StochasticSeries: React.ComponentType<any>;
-      StraightLine: React.ComponentType<any>;
-      TrendLine: React.ComponentType<any>;
-      FibonacciRetracement: React.ComponentType<any>;
-      FibonacciExtension: React.ComponentType<any>;
-      FibonacciFan: React.ComponentType<any>;
-    }
-  
-  
-
+  // ChartCanvas
+  export interface ChartCanvasProps {
+    width: number;
+    height: number;
+    ratio: number;
+    margin: { top: number; right: number; bottom: number; left: number };
+    type: 'svg' | 'hybrid';
+    seriesName: string;
+    data: any[];
+    xAccessor: (d: any) => any;
+    xExtents: [number, number] | ((data: any[]) => [number, number]);
+    xScale: any;
+    panEvent: boolean;
+    zoomEvent: boolean;
+    clamp: boolean;
+    zoomAnchor: (props: ChartCanvasProps) => void;
+    xExtentsCalculator: (data: any[], width: number, xAccessor: (d: any) => any) => [number, number];
+    onLoadMore: (start: number, end: number) => void;
+    postCalculator: (data: any[]) => any[];
+    flipXScale: boolean;
+    padding: number | { top: number; right: number; bottom: number; left: number };
+    defaultFocus: boolean;
   }
-  
+  export class ChartCanvas extends React.Component<ChartCanvasProps> {}
+
+  // Chart
+  export interface ChartProps {
+    id: number;
+    yExtents?: ((d: any) => number) | [number, number];
+    yExtentsCalculator?: (data: any[], width: number, yAccessor: (d: any) => any) => [number, number];
+    yScale?: any;
+    origin?: (width: number, height: number) => [number, number];
+    padding?: number | { top: number; right: number; bottom: number; left: number };
+    height?: number;
+  }
+  export class Chart extends React.Component<ChartProps> {}
+
+  // Series
+  export interface SeriesProps {
+    yAccessor: (d: any) => any;
+    type: string;
+    stroke?: string;
+    fill?: string;
+    className?: string;
+    opacity?:number;
+    strokeWidth?: number;
+    clip?: boolean;
+  }
+  export class Series extends React.Component<SeriesProps> {}
+
+  // Indicators
+  export interface IndicatorsProps {
+    options: any;
+    stroke?: string | { [key: string]: string };
+    fill?: string | { [key: string]: string };
+    className?: string;
+    opacity?: number;
+  }
+  export class Indicators extends React.Component<IndicatorsProps> {}
+
+  // Axes
+  export interface AxesProps {
+    orient: 'top' | 'bottom' | 'left' | 'right';
+    innerTickSize?: number;
+    outerTickSize?: number;
+    tickFormat?: (d: any) => string;
+    tickPadding?: number;
+    tickSize?: number;
+    ticks?: number;
+    tickValues?: any[];
+    showDomain?: boolean;
+    showTicks?: boolean;
+    className?: string;
+    axisAt?: 'top' | 'bottom' | 'left' | 'right' | 'middle' | number;
+    strokeWidth?: number;
+    stroke?: string;
+    opacity?: number;
+  }
+  export class Axes extends React.Component<AxesProps> {}
+
+  // Helpers
+  export interface HelpersProps {
+    type: string;
+    stroke?: string;
+    strokeWidth?: number;
+    className?: string;
+    opacity?: number;
+  }
+  export class Helpers extends React.Component<HelpersProps> {}
+
+  // Interactive
+  export interface InteractiveProps {
+    onDragStart?: (e: React.MouseEvent, moreProps: any) => void;
+    onDrag?: (e: React.MouseEvent, moreProps: any) => void;
+    onDragComplete?: (e: React.MouseEvent, moreProps: any) => void;
+    onDoubleClick?: (e: React.MouseEvent, moreProps: any) => void;
+    onSelect?: (e: React.MouseEvent, moreProps: any) => void;
+    onContextMenu?: (e: React.MouseEvent, moreProps: any) => void;
+    className?: string;
+  }
+  export class Interactive extends React.Component<InteractiveProps> {}
+
+  // Utils
+  export interface UtilsProps {
+    // Unfortunately, I cannot find the properties and methods for Utils in react-stockcharts@0.7.8
+  }
+  export class Utils extends React.Component<UtilsProps> {}
+}
+
+
+
+
