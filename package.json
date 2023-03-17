@@ -145,5 +145,5 @@
       "email": "ragunath.ramaswamy@gmail.com"
     }
   ],
-  "typings": "index.d.ts"
+  "types": "index.d.ts"
 }
