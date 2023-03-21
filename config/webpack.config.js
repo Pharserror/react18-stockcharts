@@ -28,16 +28,19 @@ function buildConfig(mode) {
 
 	const context = rootPath;
 	const loadersForDocs = [
-		{ test: /\.jpg$/, loader: "file-loader" },
-		{ test: /\.(png|svg)$/, loader: "url-loader?mimetype=image/png" },
-		{ test: /\.md$/, loaders: ["html-loader", "remarkable-loader"] },
-		{ test: /\.scss$/, loaders: ["style-loader", "css-loader", "autoprefixer-loader", "sass-loader?outputStyle=expanded"] }
+		{ test: /\.jpg$/, use: "file-loader" },
+		{ test: /\.(png|svg)$/, use: "url-loader?mimetype=image/png" },
+		{ test: /\.md$/, use: ["html-loader", "remarkable-loader"] },
+		{ test: /\.scss$/, use: ["style-loader", "css-loader", "autoprefixer-loader", "sass-loader"] }
 	];
 
 	console.log("MODE", mode);
 	return {
 		context,
 		entry: docsEntry,
+        optimization: {
+          minimize: process.env.NODE_ENV === 'production',
+        },
 		output: {
 			path: path.join(rootPath, "build/"),
 			filename: `dist/[name]${ifDocs(".[chunkhash]", "")}.js`,
@@ -46,11 +49,11 @@ function buildConfig(mode) {
 			libraryTarget: "umd",
 			pathinfo: ifWatch(true, false), // since we have eval as devtool for watch, pathinfo gives line numbers which are close enough
 		},
-		devtool: ifWatch("cheap-source-map", "sourcemap"),
+		devtool: "source-map",
 		module: {
-			loaders: removeEmpty([
-				// { test: /\.json$/, loader: "json" },
-				{ test: /\.(js|jsx)$/, loaders: ["babel-loader"], exclude: /node_modules/ },
+			rules: removeEmpty([
+				// { test: /\.json$/, use: "json" },
+				{ test: /\.(js|jsx)$/, use: "babel-loader", exclude: /node_modules/ },
 				...loadersForDocs,
 			])
 		},
@@ -60,7 +63,6 @@ function buildConfig(mode) {
 		plugins: removeEmpty([
 			new ProgressBarPlugin(),
 			new webpack.NoEmitOnErrorsPlugin(),
-			new webpack.optimize.OccurrenceOrderPlugin(),
 
 			ifDocs(new webpack.DefinePlugin({
 				"process.env": {
@@ -69,14 +71,6 @@ function buildConfig(mode) {
 				},
 			})),
 			// ifProd(new webpack.optimize.DedupePlugin()),
-			ifDocs(new webpack.optimize.UglifyJsPlugin({
-				compress: {
-					screw_ie8: true,
-					warnings: false,
-					drop_console: true,
-				},
-				sourceMap: true,
-			})),
 			new HtmlWebpackPlugin({
 				template: "./docs/pageTemplate.js",
 				inject: false,

@@ -1,7 +1,8 @@
 {
 	"plugins": [
-		"import", "flowtype", "jsx-a11y", "react", "const-immutable"
+		"@babel", "import", "flowtype", "jsx-a11y", "react", "const-immutable"
 	],
+    "parser": "@babel/eslint-parser",
 	"parserOptions": {
 		"ecmaVersion": 6,
 		"sourceType": "module",
@@ -9,6 +10,14 @@
 			"jsx": true,
 			"experimentalObjectRestSpread": true,
 		},
+        "babelOptions": {
+            "babelrc": true,
+            "presets": [
+                "@babel/preset-env",
+                "@babel/preset-react",
+                "@babel/preset-flow"
+            ]
+        }
 	},
 	"env": {
 		"browser": true,
