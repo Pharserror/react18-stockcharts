@@ -1,6 +1,6 @@
 {
   "name": "react-stockcharts",
-  "version": "0.8.1",
+  "version": "0.8.0",
   "description": "Highly customizable stock charts with ReactJS and d3",
   "main": "src/index.js",
   "module": "src/index.js",
@@ -60,7 +60,6 @@
     "@babel/eslint-parser": "^7.21.3",
     "@babel/eslint-plugin": "^7.19.1",
     "@babel/preset-env": "7.20.2",
-    "@babel/preset-flow": "7.18.6",
     "@babel/preset-react": "7.18.6",
     "autoprefixer-loader": "^3.2.0",
     "babel-loader": "9.1.2",
@@ -71,7 +70,6 @@
     "es6-promise": "^4.2.8",
     "eslint": "^8.36.0",
     "eslint-plugin-const-immutable": "^2.1.0",
-    "eslint-plugin-flowtype": "^8.0.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",

@@ -1,6 +1,6 @@
 {
 	"plugins": [
-		"@babel", "import", "flowtype", "jsx-a11y", "react", "const-immutable"
+		"@babel", "import", "jsx-a11y", "react", "const-immutable"
 	],
     "parser": "@babel/eslint-parser",
 	"parserOptions": {
@@ -14,8 +14,7 @@
             "babelrc": true,
             "presets": [
                 "@babel/preset-env",
-                "@babel/preset-react",
-                "@babel/preset-flow"
+                "@babel/preset-react"
             ]
         }
 	},
@@ -35,15 +34,11 @@
 			"node": {
 				"extensions": [".js", ".jsx", ".json"]
 			}
-		},
-		"flowtype": {
-			"onlyFilesWithFlowAnnotation": true
 		}
 	},
 	"extends": [
 		"eslint:recommended",
 		"plugin:react/recommended",
-		"plugin:flowtype/recommended",
 		"plugin:import/errors",
 		"plugin:import/warnings"
 	],
@@ -51,9 +46,6 @@
 		"jsx-a11y/aria-role": "warn",
 		"jsx-a11y/img-redundant-alt": "warn",
 		"jsx-a11y/no-access-key": "warn",
-		"flowtype/define-flow-type": "warn",
-		"flowtype/require-valid-file-annotation": "warn",
-		"flowtype/use-flow-type": "warn",
 		"react/jsx-pascal-case": 1,
 		"react/jsx-uses-react": 1,
 		"react/jsx-uses-vars": 1,
