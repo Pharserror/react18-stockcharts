@@ -10,9 +10,9 @@ try {
 	delete pkg.devDependencies;
 	delete pkg.scripts;
 	delete pkg.browserify;
-	pkg.main = "index.js";
-	pkg.module = "es/index.js";
-	pkg.esnext = "es/index.js";
+	pkg.main = "dist/react-stockcharts.js";
+	// pkg.module = "es/index.js";
+	// pkg.esnext = "es/index.js";
 
 	const buildPackage = JSON.stringify(pkg, null, 2);
 
