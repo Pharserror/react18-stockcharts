@@ -12,8 +12,8 @@ function buildConfig(mode) {
 	const { ifWatch, ifDocs } = getIfUtils(mode, ["docs", "watch"]);
 
 	const docsEntry = {
-		"react-stockcharts-home": "./docs/index.js",
-		"react-stockcharts-documentation": "./docs/documentation.js",
+		"react-stockcharts-home": "./docs/index",
+		"react-stockcharts-documentation": "./docs/documentation",
 	};
 
 	const devServer = {
@@ -49,11 +49,12 @@ function buildConfig(mode) {
 			libraryTarget: "umd",
 			pathinfo: ifWatch(true, false), // since we have eval as devtool for watch, pathinfo gives line numbers which are close enough
 		},
-		devtool: "source-map",
+		// devtool: "source-map",
+        mode: 'none',
 		module: {
 			rules: removeEmpty([
 				// { test: /\.json$/, use: "json" },
-				{ test: /\.(js|jsx)$/, use: "babel-loader", exclude: /node_modules/ },
+				{ test: /\.jsx$/, use: "babel-loader", exclude: /node_modules/ },
 				...loadersForDocs,
 			])
 		},
@@ -71,20 +72,20 @@ function buildConfig(mode) {
 				},
 			})),
 			// ifProd(new webpack.optimize.DedupePlugin()),
-			new HtmlWebpackPlugin({
-				template: "./docs/pageTemplate.js",
-				inject: false,
-				page: "index",
-				mode,
-				filename: "index.html"
-			}),
-			new HtmlWebpackPlugin({
-				template: "./docs/pageTemplate.js",
-				inject: false,
-				page: "documentation",
-				mode,
-				filename: "documentation.html"
-			}),
+			// new HtmlWebpackPlugin({
+			// 	template: "./docs/pageTemplate.js",
+			// 	inject: false,
+			// 	page: "index",
+			// 	mode,
+			// 	filename: "index.html"
+			// }),
+			// new HtmlWebpackPlugin({
+			// 	template: "./docs/pageTemplate.js",
+			// 	inject: false,
+			// 	page: "documentation",
+			// 	mode,
+			// 	filename: "documentation.html"
+			// }),
 			new webpack.LoaderOptionsPlugin({
 				options: { remarkable: getRemarkable(), context }
 			}),
@@ -96,7 +97,7 @@ function buildConfig(mode) {
 			// "d3": "d3",
 		},
 		resolve: {
-			extensions: [".js", ".scss", ".md"],
+			extensions: [".js", ".jsx", ".scss", ".md"],
 			alias: {
 				"react-stockcharts": path.join(rootPath, "src"),
 			},
